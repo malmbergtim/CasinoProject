@@ -43,15 +43,6 @@ const Button = styled.button`
   border-radius: 10px;
 `;
 
-const CheckBoxContainer = styled.div`
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-`;
-const CheckBoxItem = styled.div``;
-
-const Checkbox = styled.input``;
-
 const Login = () => {
   return (
     <>
@@ -74,23 +65,6 @@ const Login = () => {
             </label>
             <Input type="text" placeholder=" Enter Password" />
             <Button type="submit">Login</Button>
-            <CheckBoxContainer>
-              <CheckBoxItem>
-                <Checkbox type="checkbox"></Checkbox>
-                <label htmlFor="">
-                  {" "}
-                  I confirm I am at least 18 years of age
-                </label>
-              </CheckBoxItem>
-              <CheckBoxItem>
-                <Checkbox type="checkbox"></Checkbox>
-                <label htmlFor="">
-                  {" "}
-                  I confirm that i have read and understood the
-                  <span style={{ fontWeight: "600" }}> Privacy Policy</span>
-                </label>
-              </CheckBoxItem>
-            </CheckBoxContainer>
           </Form>
         </Container>
       </FlexContainer>

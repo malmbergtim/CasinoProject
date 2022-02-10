@@ -29,7 +29,7 @@ const LinkStyle: CSS.Properties = {
   cursor: "pointer",
   textDecoration: "none",
   marginRight: "2rem",
-  fontSize: "1.1rem",
+  fontSize: "1rem",
   fontFamily: "Montserrat",
 };
 
