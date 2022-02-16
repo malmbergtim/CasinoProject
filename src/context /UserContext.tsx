@@ -1,31 +1,31 @@
-import { createContext, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 
-const initialState = {
-  username: "",
-  password: "",
-  email: "",
-  first: "",
-  last: "",
+export type userCredentials = {
+  username: string;
+  password: string;
+  email: string;
+  first: string;
+  last: string;
 };
 
-export type UserState = typeof initialState;
+type userContextType = {
+  user: userCredentials | null;
+  setRegisterUser: React.Dispatch<React.SetStateAction<userCredentials | null>>;
+};
 
-const userContext = createContext(initialState);
+type userProviderProps = {
+  children: ReactNode;
+};
 
-const UserProvider = (providerObject: any) => {
-  const [user, setRegisterUser] = useState<UserState>({
-    username: "",
-    password: "",
-    email: "",
-    first: "",
-    last: "",
-  });
-  console.log(providerObject);
+export const UserContext = createContext<userContextType | null>(null);
+
+export const UserProvider = ({ children }: userProviderProps) => {
+  const [user, setRegisterUser] = useState<userCredentials | null>(null);
   return (
-    <userContext.Provider value={user}>
-      {providerObject.children}
-    </userContext.Provider>
+    <UserContext.Provider value={{ user, setRegisterUser }}>
+      {children}
+    </UserContext.Provider>
   );
 };
 
-export default UserProvider;
+export default UserContext;
