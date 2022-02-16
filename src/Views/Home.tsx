@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import useFetch from "../Hooks/UseFetch";
 import Card from "../components/Card";
+import CarouselComponent from "../components/CarouselComponent";
 const GridView = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -11,6 +12,7 @@ const GridView = styled.div`
 const GridHeader = styled.h1`
   text-align: center;
   padding: 1.5rem;
+  font-family: montserrat;
 `;
 
 const Home = () => {

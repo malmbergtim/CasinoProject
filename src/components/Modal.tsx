@@ -10,9 +10,10 @@ const ModalContainer = styled.div`
 `;
 
 const ModalContent = styled.div`
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding: 1.5em;
   border-radius: 5px;
-  border: 1px solid black;
+
   width: 100%;
   height: 550px;
   position: absolute;

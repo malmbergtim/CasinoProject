@@ -10,7 +10,7 @@ const Wrapper = styled.section`
 const Footer = () => {
   return (
     <>
-      <Wrapper>Footer</Wrapper>
+      <Wrapper></Wrapper>
     </>
   );
 };
