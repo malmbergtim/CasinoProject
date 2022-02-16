@@ -1,5 +1,6 @@
 import { BlockList } from "net";
 import styled from "styled-components";
+import { useContext } from "react";
 
 const FlexContainer = styled.section`
   display: flex;
@@ -44,6 +45,7 @@ const Button = styled.button`
 `;
 
 const Login = () => {
+  const handleLogin = () => {};
   return (
     <>
       <FlexContainer>
@@ -64,7 +66,9 @@ const Login = () => {
               Password
             </label>
             <Input type="text" placeholder=" Enter Password" />
-            <Button type="submit">Login</Button>
+            <Button type="submit" onClick={handleLogin}>
+              Login
+            </Button>
           </Form>
         </Container>
       </FlexContainer>

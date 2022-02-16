@@ -3,6 +3,9 @@ import { useState } from "react";
 import styled from "styled-components";
 import { Modal } from "../components/Modal";
 import PrivacyPolicy from "../components/PrivacyPolicy";
+import { useContext } from "react";
+import { userContext } from "../context /UserContext";
+import { useNavigate } from "react-router-dom";
 
 const FlexContainer = styled.section`
   display: flex;
@@ -60,6 +63,19 @@ const Register = () => {
   const [isModalOpen, setModalState] = useState(false);
 
   const toggleModal = () => setModalState(!isModalOpen);
+  const context = useContext(userContext);
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    context?.setLoggedIn(true);
+    context?.setRegisterUser({
+      username: "Janne67",
+      password: "password123",
+      email: "janne@hotmail.com",
+      first: "janne",
+      last: "Örjansson",
+    });
+    navigate("/account");
+  };
 
   return (
     <>
@@ -91,7 +107,7 @@ const Register = () => {
             <Input type="text" placeholder="Enter First Name" />
             <label style={{ marginTop: "1rem" }}>Last Name</label>
             <Input type="text" placeholder="Enter Last Name" />
-            <Button type="submit">Login</Button>
+            <Button onClick={handleLogin}>Login</Button>
             <CheckBoxContainer>
               <CheckBoxItem>
                 <Checkbox type="checkbox"></Checkbox>
