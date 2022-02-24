@@ -7,7 +7,7 @@ import SortComponent from "../components/SortComponent";
 
 const Wrapper = styled.section`
   padding: 2em;
-  background: #ffc300;
+  background: #ffffcc;
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `;

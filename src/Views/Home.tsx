@@ -24,7 +24,7 @@ const Home = () => {
   console.log(games?.data.games);
   return (
     <>
-      <GridHeader>Casino</GridHeader>
+      <GridHeader id="casino">Casino</GridHeader>
       <GridView>
         {games?.data.games[0].casino.edges.map((game) => {
           return (
@@ -32,7 +32,7 @@ const Home = () => {
           );
         })}
       </GridView>
-      <GridHeader>Jackpots</GridHeader>
+      <GridHeader id="jackpots">Jackpots</GridHeader>
       <GridView>
         {games?.data.games[2].jackpots.edges.map((game) => {
           return (
@@ -40,7 +40,7 @@ const Home = () => {
           );
         })}
       </GridView>
-      <GridHeader>Newest</GridHeader>
+      <GridHeader id="newest">Newest</GridHeader>
       <GridView>
         {games?.data.games[3].newest.edges.map((game) => {
           return (
@@ -49,7 +49,7 @@ const Home = () => {
         })}
       </GridView>
       <GridHeader>PlayForFun Jackpot</GridHeader>
-      <GridView>
+      <GridView id="playforfunjackpots">
         {games?.data.games[4].leojackpot.edges.map((game) => {
           return (
             <Card src={game.node.image.icon.src} slug={game.node.slug}></Card>
