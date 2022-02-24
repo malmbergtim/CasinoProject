@@ -6,6 +6,8 @@ import PrivacyPolicy from "../components/PrivacyPolicy";
 import { useContext } from "react";
 import { userContext } from "../context /UserContext";
 import { useNavigate } from "react-router-dom";
+import { json } from "node:stream/consumers";
+import axios from "axios";
 
 const FlexContainer = styled.section`
   display: flex;
@@ -65,16 +67,30 @@ const Register = () => {
   const toggleModal = () => setModalState(!isModalOpen);
   const context = useContext(userContext);
   const navigate = useNavigate();
-  const handleLogin = () => {
-    context?.setLoggedIn(true);
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     context?.setRegisterUser({
-      username: "Janne67",
-      password: "password123",
-      email: "janne@hotmail.com",
-      first: "janne",
-      last: "Örjansson",
+      ...context.user!,
+      [e.target.name]: e.target.value,
     });
-    navigate("/account");
+    console.log(context?.user);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    console.log(e);
+    e.preventDefault();
+    const user = context?.user;
+    const result = await fetch(
+      "https://leovegasapi.lm.r.appspot.com/api/user/addUser",
+      {
+        method: "POST",
+        body: JSON.stringify(user),
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+      }
+    );
+    navigate(`/account`);
   };
 
   return (
@@ -96,18 +112,45 @@ const Register = () => {
           >
             Register
           </h2>
-          <Form>
-            <label style={{ marginTop: "1rem" }}>Username</label>
-            <Input type="text" placeholder="Enter A Username" />
-            <label style={{ marginTop: "1rem" }}>Password</label>
-            <Input type="text" placeholder=" Enter A Password" />
+          <Form onSubmit={handleSubmit}>
+            <label style={{ marginTop: "1rem" }}>First name</label>
+            <Input
+              type="text"
+              placeholder="Enter First name"
+              name="firstName"
+              onChange={handleInput}
+            />
+            <label style={{ marginTop: "1rem" }}>Last name</label>
+            <Input
+              type="text"
+              placeholder="Enter Lastname"
+              name="lastName"
+              onChange={handleInput}
+            />
+
             <label style={{ marginTop: "1rem" }}>Email</label>
-            <Input type="text" placeholder=" Enter Email" />
-            <label style={{ marginTop: "1rem" }}>First Name</label>
-            <Input type="text" placeholder="Enter First Name" />
-            <label style={{ marginTop: "1rem" }}>Last Name</label>
-            <Input type="text" placeholder="Enter Last Name" />
-            <Button onClick={handleLogin}>Login</Button>
+            <Input
+              type="text"
+              placeholder="Enter Email"
+              name="email"
+              onChange={handleInput}
+            />
+            <label style={{ marginTop: "1rem" }}>Password</label>
+            <Input
+              type="password"
+              placeholder=" Enter A Password"
+              name="password"
+              onChange={handleInput}
+            />
+            <label style={{ marginTop: "1rem" }}>Age</label>
+            <Input
+              type="number"
+              placeholder="Enter Age"
+              name="age"
+              onChange={handleInput}
+            />
+
+            <Button type="submit">Login</Button>
             <CheckBoxContainer>
               <CheckBoxItem>
                 <Checkbox type="checkbox"></Checkbox>

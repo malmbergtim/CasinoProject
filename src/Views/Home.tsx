@@ -2,6 +2,7 @@ import styled from "styled-components";
 import useFetch from "../Hooks/UseFetch";
 import Card from "../components/Card";
 import CarouselComponent from "../components/CarouselComponent";
+import SortComponent from "../components/SortComponent";
 const GridView = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

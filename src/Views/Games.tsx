@@ -20,7 +20,7 @@ const Games = () => {
 
   return (
     <>
-      <h1>All Games</h1>
+      <h1 id="top">All Games</h1>
       <GridView>
         {games?.data.games[0].casino.edges.map((game) => {
           return (

@@ -1,11 +1,11 @@
 import { createContext, ReactNode, useState } from "react";
 
 export type userCredentials = {
-  username: string;
   password: string;
   email: string;
-  first: string;
-  last: string;
+  firstName: string;
+  lastName: string;
+  age: number;
 };
 
 type userContextType = {

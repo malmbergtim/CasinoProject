@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer";
 import CarouselComponent from "../components/CarouselComponent";
+import SortComponent from "../components/SortComponent";
 
 const Wrapper = styled.section`
   padding: 2em;
@@ -29,6 +30,7 @@ const Layout = () => {
       <div style={{ width: "100%" }}>
         <CarouselComponent></CarouselComponent>
       </div>
+      <SortComponent />
       <Container>
         <Outlet />
       </Container>

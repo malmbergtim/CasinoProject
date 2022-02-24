@@ -1,6 +1,7 @@
 import { BlockList } from "net";
 import styled from "styled-components";
 import { useContext } from "react";
+import { userContext } from "../context /UserContext";
 
 const FlexContainer = styled.section`
   display: flex;
@@ -45,7 +46,30 @@ const Button = styled.button`
 `;
 
 const Login = () => {
-  const handleLogin = () => {};
+  const context = useContext(userContext);
+  const handleSubmit = async (e: React.FormEvent) => {
+    console.log(e);
+    e.preventDefault();
+    const user = context?.user;
+    const result = await fetch(
+      "https://leovegasapi.lm.r.appspot.com/api/user/login",
+      {
+        method: "POST",
+        body: JSON.stringify(user),
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+      }
+    );
+  };
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    context?.setRegisterUser({
+      ...context.user!,
+      [e.target.name]: e.target.value,
+    });
+    console.log(context?.user);
+  };
   return (
     <>
       <FlexContainer>
@@ -59,16 +83,24 @@ const Login = () => {
           >
             Login
           </h2>
-          <Form>
-            <label style={{ marginTop: "1rem" }}>Username</label>
-            <Input type="text" placeholder="Enter Username" />
-            <label style={{ marginTop: "1rem" }} placeholder="Username">
+          <Form onSubmit={handleSubmit}>
+            <label style={{ marginTop: "1rem" }}>Email</label>
+            <Input
+              type="text"
+              placeholder=" Enter Email"
+              name="email"
+              onChange={handleInput}
+            />
+            <label style={{ marginTop: "1rem" }} placeholder="Password">
               Password
             </label>
-            <Input type="text" placeholder=" Enter Password" />
-            <Button type="submit" onClick={handleLogin}>
-              Login
-            </Button>
+            <Input
+              placeholder=" Enter Password"
+              onChange={handleInput}
+              type="password"
+              name="password"
+            />
+            <Button type="submit">Login</Button>
           </Form>
         </Container>
       </FlexContainer>

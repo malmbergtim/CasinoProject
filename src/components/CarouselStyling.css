@@ -6,3 +6,11 @@
 .rec.rec-carousel-wrapper {
   width: 100%;
 }
+
+.rec.rec-carousel-item {
+  margin-bottom: 0;
+  height: 550px;
+}
+.rec.rec-pagination {
+  position: absolute;
+}
