@@ -2,7 +2,7 @@ import { BlockList } from "net";
 import styled from "styled-components";
 import { useContext } from "react";
 import { userContext } from "../context /UserContext";
-
+import { useNavigate } from "react-router-dom";
 const FlexContainer = styled.section`
   display: flex;
   align-items: center;
@@ -47,20 +47,29 @@ const Button = styled.button`
 
 const Login = () => {
   const context = useContext(userContext);
+  const navigate = useNavigate();
   const handleSubmit = async (e: React.FormEvent) => {
     console.log(e);
     e.preventDefault();
     const user = context?.user;
+
     const result = await fetch(
-      "https://leovegasapi.lm.r.appspot.com/api/user/login",
+      `https://leovegasapi.lm.r.appspot.com/api/user/login?email=${user!
+        .email!}&password=${user!.password!}`,
       {
         method: "POST",
-        body: JSON.stringify(user),
+        body: JSON.stringify(user?.email),
         headers: {
           "Content-Type": "application/json;charset=UTF-8",
         },
       }
-    );
+    ).then((response) => {
+      if (response.ok) {
+        response.json();
+        console.log(response);
+        navigate("/account");
+      } else console.log("something went wrong");
+    });
   };
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
