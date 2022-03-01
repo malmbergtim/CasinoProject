@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useState } from "react";
 
 export type userCredentials = {
+  id: string;
   password: string;
   email: string;
   firstName: string;
@@ -23,7 +24,6 @@ export const userContext = createContext<userContextType | null>(null);
 
 export const UserProvider = ({ children }: userProviderProps) => {
   const [user, setRegisterUser] = useState<userCredentials | null>(null);
-  console.log(user);
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   return (
     <userContext.Provider

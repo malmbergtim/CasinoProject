@@ -11,6 +11,7 @@ import Register from "./Views/Register";
 import Login from "./Views/Login";
 import About from "./Views/About";
 import Account from "./Views/Account";
+import NavbarLayout from "./Views/NavbarLayout";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />}></Route>
             <Route path="games" element={<Games />}></Route>
+          </Route>
+          <Route path="/" element={<NavbarLayout />}>
             <Route path="register" element={<Register />}></Route>
             <Route path="login" element={<Login />}></Route>
             <Route path="about" element={<About />}></Route>

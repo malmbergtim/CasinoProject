@@ -63,13 +63,18 @@ const Login = () => {
           "Content-Type": "application/json;charset=UTF-8",
         },
       }
-    ).then((response) => {
-      if (response.ok) {
-        response.json();
-        console.log(response);
+    )
+      .then((response) => {
+        return response.json();
+        if (response.ok) {
+          console.log("login successful");
+        } else console.log("something went wrong");
+      })
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("user-info", JSON.stringify(data));
         navigate("/account");
-      } else console.log("something went wrong");
-    });
+      });
   };
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {

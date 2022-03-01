@@ -90,7 +90,7 @@ const Register = () => {
         },
       }
     );
-    navigate(`/account`);
+    navigate(`/login`);
   };
 
   return (
