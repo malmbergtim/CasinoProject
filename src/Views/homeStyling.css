@@ -1,0 +1,20 @@
+.removeButtonCasino {
+  display: none;
+}
+.removeButtonNewest {
+  display: none;
+}
+.removeButtonJackpots {
+  display: none;
+}
+.removeButtonPlayForFun {
+  display: none;
+}
+
+.showMoreButton {
+  padding: 1em;
+  border: none;
+  background: #2f2f31;
+  color: #ffffbc;
+  font-size: 1rem;
+}
