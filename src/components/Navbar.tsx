@@ -29,8 +29,7 @@ const LinkStyle: CSS.Properties = {
   cursor: "pointer",
   textDecoration: "none",
   marginRight: "2rem",
-  fontSize: "1rem",
-  fontFamily: "Montserrat",
+  fontSize: "1.3rem",
 };
 
 const Navbar = () => {

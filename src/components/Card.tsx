@@ -24,6 +24,7 @@ const CardText = styled.p`
   left: 0;
   right: 0;
   text-align: center;
+  font-weight: bold;
 `;
 
 const CardContainer = styled.div`

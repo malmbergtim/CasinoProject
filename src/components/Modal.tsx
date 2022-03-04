@@ -17,7 +17,7 @@ const ModalContent = styled.div`
   width: 100%;
   height: 550px;
   position: absolute;
-  background: #ffc300;
+  background: #ffffcc;
   top: 50%;
   overflow-y: scroll;
   &::-webkit-scrollbar {

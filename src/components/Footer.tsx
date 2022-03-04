@@ -1,16 +1,21 @@
 import styled from "styled-components";
 
-const Wrapper = styled.section`
+const FooterContainer = styled.section`
   padding: 2em;
-  background: #ffc300;
+  background: #2f2f31;
   width: 100%;
-  margin-top: auto;
+  margin-top: 4rem;
 `;
 
 const Footer = () => {
   return (
     <>
-      <Wrapper></Wrapper>
+      <FooterContainer>
+        <p style={{ color: "#ffffbc" }}>
+          {" "}
+          Play For Fun Project For LeoVegas Apprenticeship{" "}
+        </p>
+      </FooterContainer>
     </>
   );
 };

@@ -11,6 +11,7 @@ const LinkStyle = {
   color: "black",
   cursor: "pointer",
   textDecoration: "none",
+  fontFamily: "Poppins",
 };
 
 const Item = styled.div`
@@ -32,13 +33,19 @@ const ErbjudandeContainer = styled.div`
   font-weight: bold;
 `;
 
-const RegisterButton = styled.button`
+const Button = styled.button`
   background: #ffc300;
   font-size: 1.5rem;
-  font-family: montserrat;
+  font-family: inherit;
   border-radius: 5px;
   padding: 0.5em;
   margin-top: 1rem;
+`;
+
+const PlayGameContainer = styled.div`
+  position: relative;
+  top: -25%;
+  left: 45%;
 `;
 
 const CarouselComponent = () => {
@@ -50,7 +57,7 @@ const CarouselComponent = () => {
         showArrows={false}
         enableAutoPlay={true}
         itemPadding={[0, 0, 0, 0]}
-        autoPlaySpeed={5000}
+        autoPlaySpeed={9000}
       >
         <Item>
           <ItemImg src={intro}></ItemImg>
@@ -59,18 +66,25 @@ const CarouselComponent = () => {
             <p style={{ color: "#ffc300" }}>
               100 Free spins direkt efter din registering
             </p>
-            <RegisterButton>
+            <Button>
               <Link to="register" style={LinkStyle}>
                 Registera
               </Link>
-            </RegisterButton>
+            </Button>
           </ErbjudandeContainer>
         </Item>
         <Item>
           <ItemImg src={hyperNova}></ItemImg>
+          <PlayGameContainer>
+            <Button>
+              <Link to="hypernova" style={LinkStyle}>
+                Spela
+              </Link>
+            </Button>
+          </PlayGameContainer>
         </Item>
         <Item>
-          <ItemImg src={hyperStrike}></ItemImg>
+          <ItemImg src={hyperStrike} />
         </Item>
         <Item>
           <ItemImg src={gonzos}></ItemImg>

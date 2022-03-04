@@ -1,3 +1,4 @@
+import { faSuitcaseRolling } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 
 export interface apiType {

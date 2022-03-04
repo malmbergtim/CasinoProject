@@ -16,7 +16,6 @@ const GridView = styled.div`
 const GridHeader = styled.h1`
   text-align: center;
   padding: 1.5rem;
-  font-family: montserrat;
 `;
 
 const ButtonContainer = styled.div`
@@ -24,6 +23,7 @@ const ButtonContainer = styled.div`
 `;
 
 const Home = () => {
+
   const { games } = useFetch(
     "https://www.leovegas.com/api/public-casino/bymarket/se"
   );

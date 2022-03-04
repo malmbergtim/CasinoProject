@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-scroll";
 import CSS from "csstype";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,7 +7,7 @@ import {
   faDice,
   faCoins,
 } from "@fortawesome/free-solid-svg-icons";
-
+import { Link } from "react-router-dom";
 const SortComponent = () => {
   const SortNav = styled.section`
     padding: 1em;
@@ -23,7 +22,7 @@ const SortComponent = () => {
     textDecoration: "none",
     marginRight: "rem",
     fontSize: "1rem",
-    fontFamily: "Montserrat",
+    color: "#ffffcc",
   };
 
   const LinkItem = styled.div`
@@ -39,53 +38,25 @@ const SortComponent = () => {
       <SortNav>
         <LinkItem>
           <FontAwesomeIcon icon={faDice} style={{}} />
-          <Link
-            to="casino"
-            spy={true}
-            smooth={true}
-            offset={25}
-            duration={500}
-            style={LinkStyle}
-          >
-            Casino{" "}
+          <Link to="casino" style={LinkStyle}>
+            Casino
           </Link>
         </LinkItem>
         <LinkItem>
           <FontAwesomeIcon icon={faDollarSign} />
-          <Link
-            to="jackpots"
-            spy={true}
-            smooth={true}
-            offset={25}
-            duration={500}
-            style={LinkStyle}
-          >
-            Jackpots{" "}
+          <Link to="jackpots" style={LinkStyle}>
+            Jackpots
           </Link>
         </LinkItem>
         <LinkItem>
           <FontAwesomeIcon icon={faCertificate} />
-          <Link
-            to="newest"
-            spy={true}
-            smooth={true}
-            offset={25}
-            duration={500}
-            style={LinkStyle}
-          >
-            Newest{" "}
+          <Link to="newest" style={LinkStyle}>
+            Newest
           </Link>
         </LinkItem>
         <LinkItem>
           <FontAwesomeIcon icon={faCoins} />
-          <Link
-            to="playforfunjackpots"
-            spy={true}
-            smooth={true}
-            offset={-60}
-            duration={500}
-            style={LinkStyle}
-          >
+          <Link to="playforfun" style={LinkStyle}>
             PlayForFun
           </Link>
         </LinkItem>
