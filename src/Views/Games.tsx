@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Card from "../components/Card";
 import img from "../images/PlayForFun4.png";
 import useFetch from "../Hooks/UseFetch";
+import { searchContext } from "../context /SearchContext";
+import SearchComponent from "../components/searchComponent";
 
 const GridView = styled.div`
   display: grid;
@@ -16,35 +18,33 @@ const Games = () => {
     "https://www.leovegas.com/api/public-casino/bymarket/se"
   );
 
-  console.log(games?.data.games[0].casino.edges);
+  console.log(games?.data.games);
+  const context = useContext(searchContext);
 
+  // games?.data.games[3].newest.edges &&
+  //         games?.data.games[4].leojackpot.edges
   return (
     <>
       <h1 id="top">All Games</h1>
+      <SearchComponent title="All Games"></SearchComponent>
       <GridView>
-        {games?.data.games[0].casino.edges.map((game) => {
-          return (
-            <Card src={game.node.image.icon.src} slug={game.node.slug}></Card>
-          );
-        })}
+        {games?.data.games[0].casino.edges
 
-        {games?.data.games[2].jackpots.edges.map((game) => {
-          return (
-            <Card src={game.node.image.icon.src} slug={game.node.slug}></Card>
-          );
-        })}
-
-        {games?.data.games[3].newest.edges.map((game) => {
-          return (
-            <Card src={game.node.image.icon.src} slug={game.node.slug}></Card>
-          );
-        })}
-
-        {games?.data.games[4].leojackpot.edges.map((game) => {
-          return (
-            <Card src={game.node.image.icon.src} slug={game.node.slug}></Card>
-          );
-        })}
+          .filter((game) => {
+            if (context?.searchTerm == "") {
+              return game;
+            } else if (
+              game.node.slug
+                .toLowerCase()
+                .includes(context!.searchTerm.toLowerCase())
+            )
+              return game;
+          })
+          .map((game) => {
+            return (
+              <Card src={game.node.image.icon.src} slug={game.node.slug}></Card>
+            );
+          })}
       </GridView>
     </>
   );

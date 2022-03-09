@@ -25,16 +25,18 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />}></Route>
             <Route path="games" element={<Games />}></Route>
-          </Route>
-          <Route path="/" element={<NavbarLayout />}>
-            <Route path="register" element={<Register />}></Route>
-            <Route path="login" element={<Login />}></Route>
-            <Route path="about" element={<About />}></Route>
-            <Route path="account" element={<Account />}></Route>
             <Route path="casino" element={<Casino />}></Route>
             <Route path="jackpots" element={<Jackpots />}></Route>
             <Route path="newest" element={<Newest />}></Route>
             <Route path="playforfun" element={<PlayForFun />}></Route>
+          </Route>
+          <Route path="/" element={<NavbarLayout />}>
+            <Route path="register" element={<Register />}></Route>
+
+            <Route path="login" element={<Login />}></Route>
+            <Route path="about" element={<About />}></Route>
+            <Route path="account" element={<Account />}></Route>
+
             <Route path="hypernova" element={<Hypernova />}></Route>
           </Route>
         </Routes>

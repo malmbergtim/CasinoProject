@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Icon } from "./icons";
 
 const FooterContainer = styled.section`
   padding: 2em;
@@ -15,6 +16,7 @@ const Footer = () => {
           {" "}
           Play For Fun Project For LeoVegas Apprenticeship{" "}
         </p>
+        <Icon />
       </FooterContainer>
     </>
   );

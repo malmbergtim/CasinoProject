@@ -23,7 +23,6 @@ const ButtonContainer = styled.div`
 `;
 
 const Home = () => {
-
   const { games } = useFetch(
     "https://www.leovegas.com/api/public-casino/bymarket/se"
   );

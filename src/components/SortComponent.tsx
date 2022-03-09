@@ -6,6 +6,7 @@ import {
   faDollarSign,
   faDice,
   faCoins,
+  faGamepad,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 const SortComponent = () => {
@@ -46,6 +47,12 @@ const SortComponent = () => {
           <FontAwesomeIcon icon={faDollarSign} />
           <Link to="jackpots" style={LinkStyle}>
             Jackpots
+          </Link>
+        </LinkItem>
+        <LinkItem>
+          <FontAwesomeIcon icon={faGamepad} />
+          <Link to="games" style={LinkStyle}>
+            All Games
           </Link>
         </LinkItem>
         <LinkItem>
