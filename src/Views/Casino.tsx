@@ -39,6 +39,8 @@ const Casino = () => {
   );
 
   const context = useContext(searchContext);
+  let count = 0;
+  console.log("this is count" + count);
 
   return (
     <>
@@ -56,6 +58,7 @@ const Casino = () => {
                 .toLowerCase()
                 .includes(context!.searchTerm.toLowerCase())
             ) {
+              count++;
               return game;
             }
           })

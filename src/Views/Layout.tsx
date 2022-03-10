@@ -17,8 +17,6 @@ const Container = styled.div`
   margin-top: 15px;
   padding-right: 100px;
   padding-left: 100px;
-  margin-right: auto;
-  margin-left: auto;
 `;
 
 const Layout = () => {

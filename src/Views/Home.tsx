@@ -8,9 +8,9 @@ import "./homeStyling.css";
 
 const GridView = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 10px;
-  justify-items: center;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 20px;
+  justify-content: center;
 `;
 
 const GridHeader = styled.h1`
@@ -42,6 +42,7 @@ const Home = () => {
   return (
     <>
       <GridHeader id="casino">Casino</GridHeader>
+
       <GridView>
         {games?.data.games[0].casino.edges.slice(0, 5).map((game, index) => {
           return (
@@ -55,6 +56,7 @@ const Home = () => {
             );
           })}
       </GridView>
+
       {/* show all casino */}
       <ButtonContainer>
         <button

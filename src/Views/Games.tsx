@@ -8,9 +8,14 @@ import SearchComponent from "../components/searchComponent";
 
 const GridView = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 10px;
-  justify-items: center;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 20px;
+  justify-content: center;
+`;
+
+const GridHeader = styled.h1`
+  text-align: center;
+  padding: 1.5rem;
 `;
 
 const Games = () => {
@@ -25,10 +30,64 @@ const Games = () => {
   //         games?.data.games[4].leojackpot.edges
   return (
     <>
-      <h1 id="top">All Games</h1>
+      <GridHeader>All Games</GridHeader>
       <SearchComponent title="All Games"></SearchComponent>
       <GridView>
         {games?.data.games[0].casino.edges
+
+          .filter((game) => {
+            if (context?.searchTerm == "") {
+              return game;
+            } else if (
+              game.node.slug
+                .toLowerCase()
+                .includes(context!.searchTerm.toLowerCase())
+            )
+              return game;
+          })
+          .map((game) => {
+            return (
+              <Card src={game.node.image.icon.src} slug={game.node.slug}></Card>
+            );
+          })}
+
+        {games?.data.games[3].newest.edges
+
+          .filter((game) => {
+            if (context?.searchTerm == "") {
+              return game;
+            } else if (
+              game.node.slug
+                .toLowerCase()
+                .includes(context!.searchTerm.toLowerCase())
+            )
+              return game;
+          })
+          .map((game) => {
+            return (
+              <Card src={game.node.image.icon.src} slug={game.node.slug}></Card>
+            );
+          })}
+
+        {games?.data.games[4].leojackpot.edges
+
+          .filter((game) => {
+            if (context?.searchTerm == "") {
+              return game;
+            } else if (
+              game.node.slug
+                .toLowerCase()
+                .includes(context!.searchTerm.toLowerCase())
+            )
+              return game;
+          })
+          .map((game) => {
+            return (
+              <Card src={game.node.image.icon.src} slug={game.node.slug}></Card>
+            );
+          })}
+
+        {games?.data.games[2].jackpots.edges
 
           .filter((game) => {
             if (context?.searchTerm == "") {

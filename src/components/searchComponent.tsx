@@ -26,16 +26,21 @@ const SearchComponent = (props: propsType) => {
   const context = useContext(searchContext);
 
   return (
-    <SearchContainer>
-      <SearchLabel>Search in {props.title}</SearchLabel>
-      <SearchInput
-        type="text"
-        placeholder="Search...."
-        onChange={(e) => {
-          context?.setSearchTerm(e.target.value);
-        }}
-      ></SearchInput>
-    </SearchContainer>
+    <>
+      <SearchContainer>
+        <SearchLabel>Search in {props.title}</SearchLabel>
+        <SearchInput
+          type="text"
+          placeholder="Search...."
+          onChange={(e) => {
+            context?.setSearchTerm(e.target.value);
+          }}
+        ></SearchInput>
+      </SearchContainer>
+      {context?.searchTerm && (
+        <h1 style={{ marginLeft: "2rem" }}>Sökning: {context.searchTerm}</h1>
+      )}
+    </>
   );
 };
 
