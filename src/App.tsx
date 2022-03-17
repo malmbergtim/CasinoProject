@@ -31,14 +31,13 @@ function App() {
             <Route path="playforfun" element={<PlayForFun />}></Route>
           </Route>
           <Route path="/" element={<NavbarLayout />}>
-            <Route path="register" element={<Register />}></Route>
-
-            <Route path="login" element={<Login />}></Route>
             <Route path="about" element={<About />}></Route>
             <Route path="account" element={<Account />}></Route>
 
             <Route path="hypernova" element={<Hypernova />}></Route>
           </Route>
+          <Route path="login" element={<Login />}></Route>
+          <Route path="register" element={<Register />}></Route>
         </Routes>
       </BrowserRouter>
     </>

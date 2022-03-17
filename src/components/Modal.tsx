@@ -7,13 +7,16 @@ const ModalContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  margin-right: 2rem;
+  margin-left: 2rem;
+  margin-top: 1rem;
 `;
 
 const ModalContent = styled.div`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding: 1.5em;
   border-radius: 5px;
-
+  z-index: 100;
   width: 100%;
   height: 550px;
   position: absolute;

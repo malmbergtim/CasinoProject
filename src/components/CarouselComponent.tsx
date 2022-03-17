@@ -28,7 +28,7 @@ const ErbjudandeContainer = styled.div`
   position: relative;
   top: -400px;
   left: 5%;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-family: montserrat;
   font-weight: bold;
 `;
