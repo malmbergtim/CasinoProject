@@ -74,7 +74,7 @@ const Login = () => {
     const user = context?.user;
 
     const result = await fetch(
-      `http://192.168.56.1:8080/api/user/login?email=${user!
+      `http://192.168.1.112:8080/api/user/login?email=${user!
         .email!}&password=${user!.password!}`,
       {
         method: "POST",

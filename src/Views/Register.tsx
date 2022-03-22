@@ -99,7 +99,7 @@ const Register = () => {
     console.log(e);
     e.preventDefault();
     const user = context?.user;
-    const result = await fetch("http://192.168.56.1:8080/api/user/addUser", {
+    const result = await fetch("http://192.168.1.112:8080/api/user/addUser", {
       method: "POST",
       body: JSON.stringify(user),
       headers: {

@@ -4,6 +4,8 @@ import Card from "../components/Card";
 import CarouselComponent from "../components/CarouselComponent";
 import SortComponent from "../components/SortComponent";
 import { useState, useRef } from "react";
+import { useContext, useEffect } from "react";
+import { userContext } from "../context /UserContext";
 import "./homeStyling.css";
 
 const GridView = styled.div`
@@ -23,6 +25,17 @@ const ButtonContainer = styled.div`
 `;
 
 const Home = () => {
+  const context = useContext(userContext);
+  useEffect(() => {
+    const userData = localStorage.getItem("user-info");
+    const accountInfo = JSON.parse(userData!);
+
+    context?.setRegisterUser(accountInfo);
+  }, []);
+
+  console.log("hello from home", context?.user)
+
+
   const { games } = useFetch(
     "https://www.leovegas.com/api/public-casino/bymarket/se"
   );
@@ -41,18 +54,20 @@ const Home = () => {
   console.log(games?.data.games);
   return (
     <>
+
+      
       <GridHeader id="casino">Casino</GridHeader>
 
       <GridView>
         {games?.data.games[0].casino.edges.slice(0, 5).map((game, index) => {
           return (
-            <Card src={game.node.image.icon.src} slug={game.node.slug}></Card>
+            <Card src={game.node.image.icon.src} slug={game.node.slug} id={index}></Card>
           );
         })}
         {showAllCasino &&
           games?.data.games[0].casino.edges.slice(5).map((game, index) => {
             return (
-              <Card src={game.node.image.icon.src} slug={game.node.slug}></Card>
+              <Card src={game.node.image.icon.src} slug={game.node.slug} id={index}></Card>
             );
           })}
       </GridView>
@@ -72,15 +87,15 @@ const Home = () => {
 
       <GridHeader id="jackpots">Jackpots</GridHeader>
       <GridView>
-        {games?.data.games[2].jackpots.edges.slice(0, 5).map((game) => {
+        {games?.data.games[2].jackpots.edges.slice(0, 5).map((game, index) => {
           return (
-            <Card src={game.node.image.icon.src} slug={game.node.slug}></Card>
+            <Card src={game.node.image.icon.src} slug={game.node.slug} id={index}></Card>
           );
         })}
         {showAllJackpots &&
           games?.data.games[2].jackpots.edges.slice(5).map((game, index) => {
             return (
-              <Card src={game.node.image.icon.src} slug={game.node.slug}></Card>
+              <Card src={game.node.image.icon.src} slug={game.node.slug} id={index}></Card>
             );
           })}
       </GridView>
@@ -99,15 +114,15 @@ const Home = () => {
 
       <GridHeader id="newest">Newest</GridHeader>
       <GridView>
-        {games?.data.games[3].newest.edges.slice(0, 5).map((game) => {
+        {games?.data.games[3].newest.edges.slice(0, 5).map((game, index) => {
           return (
-            <Card src={game.node.image.icon.src} slug={game.node.slug}></Card>
+            <Card src={game.node.image.icon.src} slug={game.node.slug} id={index}></Card>
           );
         })}
         {showAllNewest &&
           games?.data.games[3].newest.edges.slice(5).map((game, index) => {
             return (
-              <Card src={game.node.image.icon.src} slug={game.node.slug}></Card>
+              <Card src={game.node.image.icon.src} slug={game.node.slug} id={index}></Card>
             );
           })}
       </GridView>
@@ -125,15 +140,15 @@ const Home = () => {
       </ButtonContainer>
       <GridHeader>PlayForFun Jackpot</GridHeader>
       <GridView id="playforfunjackpots">
-        {games?.data.games[4].leojackpot.edges.slice(0, 5).map((game) => {
+        {games?.data.games[4].leojackpot.edges.slice(0, 5).map((game, index) => {
           return (
-            <Card src={game.node.image.icon.src} slug={game.node.slug}></Card>
+            <Card src={game.node.image.icon.src} slug={game.node.slug} id={index}></Card>
           );
         })}
         {showAllPlayForFun &&
           games?.data.games[4].leojackpot.edges.slice(5).map((game, index) => {
             return (
-              <Card src={game.node.image.icon.src} slug={game.node.slug}></Card>
+              <Card src={game.node.image.icon.src} slug={game.node.slug} id={index}></Card>
             );
           })}
       </GridView>

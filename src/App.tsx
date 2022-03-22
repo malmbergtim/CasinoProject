@@ -17,6 +17,7 @@ import Jackpots from "./Views/Jackpots";
 import Newest from "./Views/Newest";
 import PlayForFun from "./Views/PlayForFun";
 import Hypernova from "./Views/GameFolder/Hypernova";
+import Favorites from "./Views/Favorites";
 function App() {
   return (
     <>
@@ -29,6 +30,7 @@ function App() {
             <Route path="jackpots" element={<Jackpots />}></Route>
             <Route path="newest" element={<Newest />}></Route>
             <Route path="playforfun" element={<PlayForFun />}></Route>
+            <Route path="favorites" element={<Favorites />}></Route>
           </Route>
           <Route path="/" element={<NavbarLayout />}>
             <Route path="about" element={<About />}></Route>

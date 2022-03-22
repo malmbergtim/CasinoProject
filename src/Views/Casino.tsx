@@ -64,7 +64,7 @@ const Casino = () => {
           })
           .map((game, index) => {
             return (
-              <Card src={game.node.image.icon.src} slug={game.node.slug}></Card>
+              <Card src={game.node.image.icon.src} slug={game.node.slug} id={index}></Card>
             );
           })}
       </GridView>

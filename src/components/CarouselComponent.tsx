@@ -6,6 +6,8 @@ import hyperStrike from "./../images/Hyperstrike.jpg";
 import gonzos from "./../images/gonzos.jpg";
 import { Link } from "react-router-dom";
 import "./CarouselStyling.css";
+import { useContext } from "react";
+import { userContext } from "../context /UserContext";
 
 const LinkStyle = {
   color: "black",
@@ -49,9 +51,59 @@ const PlayGameContainer = styled.div`
 `;
 
 const CarouselComponent = () => {
+
+  const context = useContext(userContext);
+
   return (
     <>
-      <Carousel
+      
+      { context?.loggedIn ?
+
+        <Carousel
+        isRTL={false}
+        itemsToShow={1}
+        showArrows={false}
+        enableAutoPlay={true}
+        itemPadding={[0, 0, 0, 0]}
+        autoPlaySpeed={9000}
+      >
+        <Item>
+          <ItemImg src={intro}></ItemImg>
+          <ErbjudandeContainer>
+            <h1 style={{ color: "#ffc300" }}>Välkommen tillbaka {context?.user?.firstName}</h1>
+            <p style={{ color: "#ffc300" }}>
+              Spela dina favoriter nu
+            </p>
+            <Button>
+              <Link to="favorites" style={LinkStyle}>
+                Favoriter
+              </Link>
+            </Button>
+          </ErbjudandeContainer>
+        </Item>
+        <Item>
+          <ItemImg src={hyperNova}></ItemImg>
+          <PlayGameContainer>
+            <Button>
+              <Link to="hypernova" style={LinkStyle}>
+                Spela
+              </Link>
+            </Button>
+          </PlayGameContainer>
+        </Item>
+        <Item>
+          <ItemImg src={hyperStrike} />
+        </Item>
+        <Item>
+          <ItemImg src={gonzos}></ItemImg>
+        </Item>
+      </Carousel>
+
+
+      
+        :   
+
+        <Carousel
         isRTL={false}
         itemsToShow={1}
         showArrows={false}
@@ -90,6 +142,9 @@ const CarouselComponent = () => {
           <ItemImg src={gonzos}></ItemImg>
         </Item>
       </Carousel>
+
+
+      }
     </>
   );
 };

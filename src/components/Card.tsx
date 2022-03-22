@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
+
 type cardProps = {
   src: string;
   slug: string;
+  id: number;
 };
 
 const CardImg = styled.img`
@@ -26,13 +28,14 @@ const removeDash = (str: string) => {
 };
 
 const Card = (props: cardProps) => {
-  const { slug, src } = props;
+  const { slug, src, id} = props;
 
   return (
     <>
       <CardContainer>
         <CardImg src={src} alt={slug}></CardImg>
         <CardText>{removeDash(slug)}</CardText>
+        
       </CardContainer>
     </>
   );
