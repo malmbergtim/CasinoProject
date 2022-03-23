@@ -36,7 +36,7 @@ const Input = styled.input`
   margin-bottom: 1rem;
   border: 1px solid black;
   appearance: none;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 0.5rem;
   background: #2f2f31;
   ::placeholder {

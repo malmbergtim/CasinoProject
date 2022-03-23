@@ -28,7 +28,7 @@ const ItemImg = styled.img`
 
 const ErbjudandeContainer = styled.div`
   position: relative;
-  top: -400px;
+  top: -500px;
   left: 5%;
   font-size: 1.3rem;
   font-family: montserrat;
@@ -36,19 +36,26 @@ const ErbjudandeContainer = styled.div`
 `;
 
 const Button = styled.button`
-  background: #ffc300;
-  font-size: 1.5rem;
-  font-family: inherit;
-  border-radius: 5px;
-  padding: 0.5em;
-  margin-top: 1rem;
+ 
+  padding:0.35em 1.2em;
+  border:0.1em solid #ffffcc;
+  margin: 0.5rem 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration:none;
+  text-align:center;
+  transition: all 0.2s;
+  background-color: #ffffcc;
+  }
 `;
 
 const PlayGameContainer = styled.div`
   position: relative;
-  top: -25%;
+  top: -22%;
   left: 45%;
 `;
+
+
 
 const CarouselComponent = () => {
 
@@ -70,8 +77,8 @@ const CarouselComponent = () => {
         <Item>
           <ItemImg src={intro}></ItemImg>
           <ErbjudandeContainer>
-            <h1 style={{ color: "#ffc300" }}>Välkommen tillbaka {context?.user?.firstName}</h1>
-            <p style={{ color: "#ffc300" }}>
+            <h1 style={{ color: "#ffffcc" }}>Välkommen tillbaka {context?.user?.firstName}</h1>
+            <p style={{ color: "#ffffcc" }}>
               Spela dina favoriter nu
             </p>
             <Button>
@@ -114,8 +121,8 @@ const CarouselComponent = () => {
         <Item>
           <ItemImg src={intro}></ItemImg>
           <ErbjudandeContainer>
-            <h1 style={{ color: "#ffc300" }}>Välkomsterbjudande</h1>
-            <p style={{ color: "#ffc300" }}>
+            <h1 style={{ color: "#ffffcc" }}>Välkomsterbjudande</h1>
+            <p style={{ color: "#ffffcc" }}>
               100 Free spins direkt efter din registering
             </p>
             <Button>

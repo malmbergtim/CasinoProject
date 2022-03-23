@@ -34,6 +34,19 @@ const LinkStyle: CSS.Properties = {
   fontSize: "1.2rem",
 };
 
+const LogoutButton = styled.button`
+ padding:0.35em 1.2em;
+
+ margin:0 0.3em 0.3em 0;
+ border-radius: 0.12em;
+ box-sizing: border-box;
+ text-decoration:none;
+ color: #ffffcc;
+ text-align:center;
+ transition: all 0.2s;
+background: #2f2f31;
+`
+
 const Navbar = () => {
   const context = useContext(userContext);
   const navigate = useNavigate();
@@ -63,7 +76,7 @@ const Navbar = () => {
             <Link to="account" style={LinkStyle}>
               Account
             </Link>
-            <button onClick={handleLogout}>Logout</button>
+            <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
           </LinkMenu>
         </NavHeader>
       ) : (

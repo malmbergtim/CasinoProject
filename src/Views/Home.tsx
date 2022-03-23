@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import useFetch from "../Hooks/UseFetch";
 import Card from "../components/Card";
 import CarouselComponent from "../components/CarouselComponent";
 import SortComponent from "../components/SortComponent";
@@ -7,6 +6,7 @@ import { useState, useRef } from "react";
 import { useContext, useEffect } from "react";
 import { userContext } from "../context /UserContext";
 import "./homeStyling.css";
+import useFetchNewApi from "../Hooks/UseFetchNewApi";
 
 const GridView = styled.div`
   display: grid;
@@ -36,9 +36,26 @@ const Home = () => {
   console.log("hello from home", context?.user)
 
 
-  const { games } = useFetch(
-    "https://www.leovegas.com/api/public-casino/bymarket/se"
+ 
+
+  const { casino } = useFetchNewApi(
+    "http://192.168.1.112:8080/api/games/getByCategory/casino"
   );
+
+  const { jackpots } = useFetchNewApi(
+    "http://192.168.1.112:8080/api/games/getByCategory/jackpots"
+  );
+
+  const { newest } = useFetchNewApi(
+    "http://192.168.1.112:8080/api/games/getByCategory/newest"
+  );
+
+  const { leojackpot } = useFetchNewApi(
+    "http://192.168.1.112:8080/api/games/getByCategory/leojackpot"
+  );
+
+
+
 
   const [showAllCasino, setShowAllCasino] = useState(false);
   const [showAllJackpots, setShowAllJackpots] = useState(false);
@@ -51,7 +68,6 @@ const Home = () => {
 
   const [stylePlayForFun, setStylePlayForFun] = useState("showMoreButton");
 
-  console.log(games?.data.games);
   return (
     <>
 
@@ -59,15 +75,15 @@ const Home = () => {
       <GridHeader id="casino">Casino</GridHeader>
 
       <GridView>
-        {games?.data.games[0].casino.edges.slice(0, 5).map((game, index) => {
+        {casino!.slice(0, 5).map((game, index) => {
           return (
-            <Card src={game.node.image.icon.src} slug={game.node.slug} id={index}></Card>
+            <Card src={game.imageSrc} slug={game.slug} id={game.id}></Card>
           );
         })}
         {showAllCasino &&
-          games?.data.games[0].casino.edges.slice(5).map((game, index) => {
+          casino!.slice(5).map((game, index) => {
             return (
-              <Card src={game.node.image.icon.src} slug={game.node.slug} id={index}></Card>
+              <Card src={game.imageSrc} slug={game.slug} id={game.id}></Card>
             );
           })}
       </GridView>
@@ -87,19 +103,19 @@ const Home = () => {
 
       <GridHeader id="jackpots">Jackpots</GridHeader>
       <GridView>
-        {games?.data.games[2].jackpots.edges.slice(0, 5).map((game, index) => {
+      {jackpots!.slice(0, 5).map((game, index) => {
           return (
-            <Card src={game.node.image.icon.src} slug={game.node.slug} id={index}></Card>
+            <Card src={game.imageSrc} slug={game.slug} id={game.id}></Card>
           );
         })}
         {showAllJackpots &&
-          games?.data.games[2].jackpots.edges.slice(5).map((game, index) => {
+          jackpots!.slice(5).map((game, index) => {
             return (
-              <Card src={game.node.image.icon.src} slug={game.node.slug} id={index}></Card>
+              <Card src={game.imageSrc} slug={game.slug} id={game.id}></Card>
             );
           })}
       </GridView>
-      {/* show all casino */}
+ 
       <ButtonContainer>
         <button
           className={styleJackpot}
@@ -114,15 +130,15 @@ const Home = () => {
 
       <GridHeader id="newest">Newest</GridHeader>
       <GridView>
-        {games?.data.games[3].newest.edges.slice(0, 5).map((game, index) => {
+      {newest!.slice(0, 5).map((game, index) => {
           return (
-            <Card src={game.node.image.icon.src} slug={game.node.slug} id={index}></Card>
+            <Card src={game.imageSrc} slug={game.slug} id={game.id}></Card>
           );
         })}
         {showAllNewest &&
-          games?.data.games[3].newest.edges.slice(5).map((game, index) => {
+          newest!.slice(5).map((game, index) => {
             return (
-              <Card src={game.node.image.icon.src} slug={game.node.slug} id={index}></Card>
+              <Card src={game.imageSrc} slug={game.slug} id={game.id}></Card>
             );
           })}
       </GridView>
@@ -140,15 +156,15 @@ const Home = () => {
       </ButtonContainer>
       <GridHeader>PlayForFun Jackpot</GridHeader>
       <GridView id="playforfunjackpots">
-        {games?.data.games[4].leojackpot.edges.slice(0, 5).map((game, index) => {
+      {leojackpot!.slice(0, 5).map((game, index) => {
           return (
-            <Card src={game.node.image.icon.src} slug={game.node.slug} id={index}></Card>
+            <Card src={game.imageSrc} slug={game.slug} id={game.id}></Card>
           );
         })}
         {showAllPlayForFun &&
-          games?.data.games[4].leojackpot.edges.slice(5).map((game, index) => {
+          leojackpot!.slice(5).map((game, index) => {
             return (
-              <Card src={game.node.image.icon.src} slug={game.node.slug} id={index}></Card>
+              <Card src={game.imageSrc} slug={game.slug} id={game.id}></Card>
             );
           })}
       </GridView>

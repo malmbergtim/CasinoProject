@@ -1,10 +1,11 @@
-import useFetch from "../Hooks/UseFetch";
+
 import Card from "../components/Card";
 import styled from "styled-components";
 import { useState, useContext } from "react";
 import SearchComponent from "../components/searchComponent";
 
 import { searchContext } from "../context /SearchContext";
+import useFetchNewApi from "../Hooks/UseFetchNewApi";
 const GridView = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -34,8 +35,8 @@ const SearchInput = styled.input`
 `;
 
 const Casino = () => {
-  const { games } = useFetch(
-    "https://www.leovegas.com/api/public-casino/bymarket/se"
+  const { games } = useFetchNewApi(
+    "http://192.168.1.112:8080/api/games/getByCategory/casino"
   );
 
   const context = useContext(searchContext);
@@ -49,24 +50,27 @@ const Casino = () => {
       <SearchComponent title="casino" />
 
       <GridView>
-        {games?.data.games[0].casino.edges
-          .filter((game) => {
-            if (context!.searchTerm == "") {
-              return game;
-            } else if (
-              game.node.slug
-                .toLowerCase()
-                .includes(context!.searchTerm.toLowerCase())
-            ) {
-              count++;
-              return game;
-            }
+       {
+games!.filter((game) => {
+  if (context!.searchTerm == "") {
+    return game;
+  } else if (
+    game.slug
+      .toLowerCase()
+      .includes(context!.searchTerm.toLowerCase())
+  ) {
+    
+    return game;
+  }
+}) .map((game) => {
+            return(
+             <Card src={game.imageSrc} slug={game.slug} id={game.id}></Card>
+            )
           })
-          .map((game, index) => {
-            return (
-              <Card src={game.node.image.icon.src} slug={game.node.slug} id={index}></Card>
-            );
-          })}
+
+       }
+
+
       </GridView>
     </>
   );
