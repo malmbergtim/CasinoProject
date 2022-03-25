@@ -11,6 +11,7 @@ import useFetchNewApi from "../Hooks/UseFetchNewApi";
 const GridView = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
   grid-column-gap: 20px;
   justify-content: center;
 `;
@@ -77,13 +78,13 @@ const Home = () => {
       <GridView>
         {casino!.slice(0, 5).map((game, index) => {
           return (
-            <Card src={game.imageSrc} slug={game.slug} id={game.id}></Card>
+            <Card src={game.imageSrc} slug={game.slug} gameId={game.id} gameUrl={game.urlSrc}></Card>
           );
         })}
         {showAllCasino &&
           casino!.slice(5).map((game, index) => {
             return (
-              <Card src={game.imageSrc} slug={game.slug} id={game.id}></Card>
+              <Card src={game.imageSrc} slug={game.slug} gameId={game.id} gameUrl={game.urlSrc}></Card>
             );
           })}
       </GridView>
@@ -105,13 +106,13 @@ const Home = () => {
       <GridView>
       {jackpots!.slice(0, 5).map((game, index) => {
           return (
-            <Card src={game.imageSrc} slug={game.slug} id={game.id}></Card>
+            <Card src={game.imageSrc} slug={game.slug} gameId={game.id} gameUrl={game.urlSrc}></Card>
           );
         })}
         {showAllJackpots &&
           jackpots!.slice(5).map((game, index) => {
             return (
-              <Card src={game.imageSrc} slug={game.slug} id={game.id}></Card>
+              <Card src={game.imageSrc} slug={game.slug} gameId={game.id} gameUrl={game.urlSrc}></Card>
             );
           })}
       </GridView>
@@ -132,13 +133,14 @@ const Home = () => {
       <GridView>
       {newest!.slice(0, 5).map((game, index) => {
           return (
-            <Card src={game.imageSrc} slug={game.slug} id={game.id}></Card>
+            <Card src={game.imageSrc} slug={game.slug} gameId={game.id} gameUrl={game.urlSrc}></Card>
           );
         })}
         {showAllNewest &&
           newest!.slice(5).map((game, index) => {
             return (
-              <Card src={game.imageSrc} slug={game.slug} id={game.id}></Card>
+              <Card src={game.imageSrc} slug={game.slug} gameId={game.id}
+              gameUrl={game.urlSrc}></Card>
             );
           })}
       </GridView>
@@ -158,13 +160,13 @@ const Home = () => {
       <GridView id="playforfunjackpots">
       {leojackpot!.slice(0, 5).map((game, index) => {
           return (
-            <Card src={game.imageSrc} slug={game.slug} id={game.id}></Card>
+            <Card src={game.imageSrc} slug={game.slug} gameId={game.id} gameUrl={game.urlSrc} ></Card>
           );
         })}
         {showAllPlayForFun &&
           leojackpot!.slice(5).map((game, index) => {
             return (
-              <Card src={game.imageSrc} slug={game.slug} id={game.id}></Card>
+              <Card src={game.imageSrc} slug={game.slug} gameId={game.id} gameUrl={game.urlSrc}></Card>
             );
           })}
       </GridView>

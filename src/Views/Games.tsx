@@ -57,7 +57,7 @@ games!.filter((game) => {
   }
 }) .map((game) => {
             return(
-             <Card src={game.imageSrc} slug={game.slug} id={game.id}></Card>
+             <Card src={game.imageSrc} slug={game.slug} gameId={game.id} gameUrl={game.urlSrc}></Card>
             )
           })
 

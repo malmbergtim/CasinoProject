@@ -18,6 +18,7 @@ import Newest from "./Views/Newest";
 import PlayForFun from "./Views/PlayForFun";
 import Hypernova from "./Views/GameFolder/Hypernova";
 import Favorites from "./Views/Favorites";
+import GameInfo from "./Views/GameInfo";
 function App() {
   return (
     <>
@@ -37,6 +38,7 @@ function App() {
             <Route path="account" element={<Account />}></Route>
 
             <Route path="hypernova" element={<Hypernova />}></Route>
+            <Route path="gameinfo" element={<GameInfo />}></Route>
           </Route>
           <Route path="login" element={<Login />}></Route>
           <Route path="register" element={<Register />}></Route>
