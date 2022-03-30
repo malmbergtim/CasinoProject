@@ -7,7 +7,16 @@ export type userCredentials = {
   firstName: string;
   lastName: string;
   age: number;
+  gamesList: gamesList[];
 };
+
+type gamesList = {
+    id: number;
+    slug  : string;
+    name : string;
+    imageSrc : string;
+    urlSrc : string;
+}
 
 type userContextType = {
   user: userCredentials | null;

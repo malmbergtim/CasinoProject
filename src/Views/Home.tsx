@@ -32,7 +32,7 @@ const Home = () => {
     const accountInfo = JSON.parse(userData!);
 
     context?.setRegisterUser(accountInfo);
-  }, []);
+  }, [Home]);
 
   console.log("hello from home", context?.user)
 

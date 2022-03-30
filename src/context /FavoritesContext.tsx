@@ -3,10 +3,10 @@ import { createContext, useState, ReactNode } from "react";
 
 type favorites = {
     id: number;
-    slug: string;
-    name: string;
-    imageSrc: string;
-    urlSrc: string;
+    slug ? : string;
+    name ?: string;
+    imageSrc ?: string;
+    urlSrc ?: string;
 }
 
 type providerProps = {

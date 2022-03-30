@@ -2,10 +2,20 @@ import styled, {css} from "styled-components";
 
 import {Link} from "react-router-dom";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faStar
+} from "@fortawesome/free-solid-svg-icons";
+
+import { useContext, useEffect} from "react";
+import { userContext } from "../context /UserContext";
+
+import {FavoritesContext} from "../context /FavoritesContext"
+
 type cardProps = {
   src: string;
   slug: string;
-  gameId: number;
+  gameId: any;
   gameUrl: string;
 };
 
@@ -74,6 +84,14 @@ const removeDash = (str: string) => {
 // align-items: end;
 // `
 
+const StarContainer = styled.div`
+position: absolute;
+right: 0;
+margin-right: 0.5rem;
+opacity: 0;
+
+`
+
 const RandomContainer = styled.div`
   position: relative;
 
@@ -82,26 +100,74 @@ const RandomContainer = styled.div`
     transition: all 0.5s;
   }
 
+  &:hover ${StarContainer} {
+    opacity: 1;
+    transition: all 0.5s;
+  }
+
 `
 
+
+
+
 const Card = (props: cardProps) => {
-  const { slug, src, gameId, gameUrl} = props;
+  const { slug, src, gameUrl, gameId} = props;
+  const context = useContext(userContext);
+  const favsContext = useContext(FavoritesContext)
+  const favorites = favsContext?.favs
+  const handleFavorite =  async () => {
+    const user = context?.user;
+   
+    favsContext?.addFav(gameId)
   
+    const result = await fetch(
+      `http://192.168.1.112:8080/api/user/${user?.id}/games/${gameId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+      }
+    ).then((res) => res.json())
+    .then((data) => {
+      console.log("Hello from", data);
+      localStorage.setItem("user-info", JSON.stringify(data));
+    } )
+  }
+
+  
+  useEffect(() => {
+    const userData = localStorage.getItem("user-info");
+    const accountInfo = JSON.parse(userData!);
+
+   const UserInfo = context?.setRegisterUser(accountInfo);
+  
+
+  }, []);
+
+ 
+
+ 
+
   return (
     <>
       <CardContainer>
         
      
-
-        {/* <ImageContainer src={src} slug={slug} gameId={gameId}>  </ImageContainer> */}
+    
+        
         <RandomContainer>
+        <StarContainer>
+          {   
+            
+          <FontAwesomeIcon icon={faStar} onClick={handleFavorite}/>}
+         </StarContainer>
         <CardImg src={src} alt={slug}></CardImg>
         <PlayInfoFavoriteContainer>
         <a href={gameUrl} style={LinkStyle}>Play</a>
         <Link to="/gameinfo" style={LinkStyle}>Info</Link></PlayInfoFavoriteContainer>  
         
         </RandomContainer> 
-       
       
          
         <CardText>{removeDash(slug)}</CardText>
