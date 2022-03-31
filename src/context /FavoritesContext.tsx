@@ -14,13 +14,13 @@ type providerProps = {
 };
 
 type contextType = {
-  favs: favorites | null
-  addFav: React.Dispatch<React.SetStateAction<favorites | null>>
+  favs: favorites[]
+  addFav: React.Dispatch<React.SetStateAction<favorites[]>>
 };
 export const FavoritesContext = createContext<contextType | null>(null);
 
 export const FavoritesProvider = ({ children }: providerProps) => {
-  const [favs, addFav] = useState<favorites | null>(null);
+  const [favs, addFav] = useState<favorites[]>([]);
   return (
     <FavoritesContext.Provider value={{ favs, addFav }}>
       {children}

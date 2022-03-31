@@ -22,6 +22,7 @@ const GridHeader = styled.h1`
 
 const Favorites = () => {
     const context = useContext(userContext);
+    const user = useContext(userContext)
     const favcontext = useContext(FavoritesContext);
     useEffect(() => {
       const userData = localStorage.getItem("user-info");
@@ -30,12 +31,20 @@ const Favorites = () => {
         console.log(accountInfo);
       
     }, []);
+
+    // const isFound = context?.user?.gamesList.some(element => {
+    //   if (element.id === gameId ) {
+    //     return true;
+    //   }
+    // });
   
     return(
         <>
         <GridHeader>Your Favorites</GridHeader>
         <GridView>
-         {context?.user?.gamesList.map((game, index) => {
+         {
+         
+         context?.user?.gamesList.map((game, index) => {
           return (
             <Card src={game.imageSrc} slug={game.slug} gameId={game.id} gameUrl={game.urlSrc}></Card>
           );

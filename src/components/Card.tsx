@@ -7,7 +7,7 @@ import {
   faStar
 } from "@fortawesome/free-solid-svg-icons";
 
-import { useContext, useEffect} from "react";
+import { useContext, useEffect, useRef} from "react";
 import { userContext } from "../context /UserContext";
 
 import {FavoritesContext} from "../context /FavoritesContext"
@@ -115,12 +115,13 @@ const Card = (props: cardProps) => {
   const context = useContext(userContext);
   const favsContext = useContext(FavoritesContext)
   const favorites = favsContext?.favs
-  const handleFavorite =  async () => {
-    const user = context?.user;
+  const user = context?.user;
    
-    favsContext?.addFav(gameId)
+  const handleFavorite =   (e: any) => {
   
-    const result = await fetch(
+   
+    e.target.style.color = "yellow"
+     fetch(
       `http://192.168.1.112:8080/api/user/${user?.id}/games/${gameId}`,
       {
         method: "PUT",
@@ -132,22 +133,49 @@ const Card = (props: cardProps) => {
     .then((data) => {
       console.log("Hello from", data);
       localStorage.setItem("user-info", JSON.stringify(data));
+      localStorage.setItem("Favorites", JSON.stringify(favsContext?.favs))
+      favsContext?.addFav([...favsContext.favs, gameId])
     } )
   }
 
   
-  useEffect(() => {
-    const userData = localStorage.getItem("user-info");
-    const accountInfo = JSON.parse(userData!);
+  // useEffect(() => {
+  //   const userData = localStorage.getItem("user-info");
+  //   const accountInfo = JSON.parse(userData!);
 
-   const UserInfo = context?.setRegisterUser(accountInfo);
-  
+  //  const UserInfo = context?.setRegisterUser(accountInfo);
+  //  const favsData = localStorage.getItem("Favorites");
+  //  const FavsArray= JSON.parse(favsData!);
 
-  }, []);
+  // }, []);
 
  
 
- 
+    const favsArray = favsContext?.favs
+
+    const handleRemoveFavorite =  (e: any) => {
+      
+      e.target.style.color = "black"
+    fetch(
+      `http://192.168.1.112:8080/api/user/${user?.id}/games/${gameId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+      }
+    ).then((res) => res.json())
+    .then((data) => {
+      console.log(data)
+    } )
+      
+    }
+
+    const isFound = context?.user?.gamesList.some(element => {
+      if (element.id === gameId ) {
+        return true;
+      }
+    });
 
   return (
     <>
@@ -157,10 +185,15 @@ const Card = (props: cardProps) => {
     
         
         <RandomContainer>
+          
         <StarContainer>
-          {   
-            
-          <FontAwesomeIcon icon={faStar} onClick={handleFavorite}/>}
+        { 
+                    isFound ? 
+          <FontAwesomeIcon style={{color: "yellow"}}id={gameId} icon={faStar} onClick={handleRemoveFavorite}/>
+          :
+          <FontAwesomeIcon style={{color: "black" }}icon={faStar} onClick={handleFavorite}/>
+        }
+          
          </StarContainer>
         <CardImg src={src} alt={slug}></CardImg>
         <PlayInfoFavoriteContainer>
