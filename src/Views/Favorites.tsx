@@ -3,6 +3,7 @@ import { userContext } from "../context /UserContext";
 import { FavoritesContext } from "../context /FavoritesContext";
 import styled from "styled-components";
 import Card from "../components/Card";
+import useFetchNewApi from "../Hooks/UseFetchNewApi";
 
 const GridView = styled.div`
   display: grid;
@@ -24,13 +25,18 @@ const Favorites = () => {
     const context = useContext(userContext);
     const user = useContext(userContext)
     const favcontext = useContext(FavoritesContext);
-    useEffect(() => {
-      const userData = localStorage.getItem("user-info");
-      const accountInfo = JSON.parse(userData!);
+
+    const { favorites } = useFetchNewApi(
+      `http://192.168.1.112:8080/api/user/${context?.user?.id}/games/`,
+    );
   
-        console.log(accountInfo);
+    // useEffect(() => {
+    //   const userData = localStorage.getItem("user-info");
+    //   const accountInfo = JSON.parse(userData!);
+  
+    //     console.log(accountInfo);
       
-    }, []);
+    // }, []);
 
     // const isFound = context?.user?.gamesList.some(element => {
     //   if (element.id === gameId ) {
@@ -44,7 +50,7 @@ const Favorites = () => {
         <GridView>
          {
          
-         context?.user?.gamesList.map((game, index) => {
+         favorites!.map((game, index) => {
           return (
             <Card src={game.imageSrc} slug={game.slug} gameId={game.id} gameUrl={game.urlSrc}></Card>
           );

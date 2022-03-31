@@ -15,6 +15,7 @@ type categories = {
   jackpots: string;
   casino: string;
   leojackpot: string;
+  favorites: string;
 }
 
 
@@ -25,6 +26,7 @@ function useFetchNewApi(url: string): {
   jackpots: apiType[] | null;
   newest: apiType[] | null;
   leojackpot: apiType[] | null;
+  favorites: apiType[] | null;
 } {
   const [games, setGames] = useState<apiType[] | null>([]);
 
@@ -37,6 +39,7 @@ function useFetchNewApi(url: string): {
   const [leojackpot, setLeoJackpot] = useState<apiType[] | null>([]);
 
 
+  const [favorites, setFavorites] = useState<apiType[] | null>([]);
 
   
   
@@ -50,6 +53,7 @@ function useFetchNewApi(url: string): {
         setNewest(data);
         setCasino(data);
         setJackpots(data);
+        setFavorites(data);
       });
   }, [url]);
 
@@ -58,7 +62,8 @@ function useFetchNewApi(url: string): {
     jackpots,
     leojackpot,
     casino,
-    newest
+    newest,
+    favorites
   };
 }
 
